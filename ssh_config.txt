@@ -1,0 +1,20 @@
+#Location: ~/.ssh/config
+Host *
+    ControlMaster auto
+    ControlPath ~/.ssh/master-%r@%h:%p
+
+Host lx00
+User io913
+HostName lx00.hep.ph.ic.ac.uk
+
+Host lx01
+User io913
+HostName lx01.hep.ph.ic.ac.uk
+
+Host lx02
+User io913
+HostName lx02.hep.ph.ic.ac.uk
+
+Host pdsf
+User ibles
+HostName pdsf.nersc.gov

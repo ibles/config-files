@@ -1,0 +1,147 @@
+# Open new window with new name
+bind-key C command-prompt -p "Name of new window: " "new-window -n '%%'"
+
+# Remap previous window to p
+bind-key p previous-window 
+
+# 24 hour clock
+setw -g clock-mode-style 24
+set-window-option -g clock-mode-colour green #green
+
+# Remove prompting asking for confirmation when killing a window/pane
+bind-key & kill-window
+bind-key x kill-pane
+
+# Start windows and panes at 1, not 0
+set -g base-index 1
+setw -g pane-base-index 1
+
+# https://github.com/seebi/tmux-colors-solarized/blob/master/tmuxcolors-256.conf
+set-option -g status-bg colour235 #base02
+set-option -g status-fg colour136 #yellow
+set-option -g status-attr default
+
+# set window split
+bind-key v split-window -h -c "#{pane_current_path}"
+bind-key b split-window -v -c "#{pane_current_path}"
+
+# default window title colors
+set-window-option -g window-status-fg colour244 #base0
+set-window-option -g window-status-bg default
+#set-window-option -g window-status-attr dim
+
+# active window title colors
+set-window-option -g window-status-current-fg colour166 #orange
+set-window-option -g window-status-current-bg default
+#set-window-option -g window-status-current-attr bright
+
+# pane border
+set-option -g pane-border-fg colour235 #base02
+set-option -g pane-active-border-fg colour240 #base01
+
+# message text
+set-option -g message-bg colour235 #base02
+set-option -g message-fg colour166 #orange
+
+# pane number display
+set-option -g display-panes-active-colour colour33 #blue
+set-option -g display-panes-colour colour166 #orange
+
+set -g status-interval 1
+set -g status-justify centre # center align window list
+set -g status-left-length 20
+set -g status-right-length 140
+set -g status-left '#[fg=green]#H #[fg=black]• #[fg=green,bright]#(uname -r | cut -c 1-6)#[default]'
+set -g status-right '#[fg=green,bg=default,bright]#(tmux-mem-cpu-load) #[fg=red,dim,bg=default]#(uptime | cut -f 4-5 -d " " | cut -f 1 -d ",") #[fg=white,bg=default]%a%l:%M:%S %p#[default] #[fg=blue]%Y-%m-%d'
+
+# C-b is not acceptable -- Vim uses it
+set-option -g prefix C-Space
+bind-key C-a last-window #go to last window
+bind-key C-Space select-pane -t :.+ #go to last pane
+#set-option -g prefix C-a
+#bind-key C-a last-window
+
+# Allows for faster key repetition
+set -s escape-time 0
+
+# Rather than constraining window size to the maximum size of any client 
+# connected to the *session*, constrain window size to the maximum size of any 
+# client connected to *that window*. Much more reasonable.
+setw -g aggressive-resize on
+
+# Activity monitoring
+setw -g monitor-activity on
+set -g visual-activity on
+
+# Vi copypaste mode
+set-window-option -g mode-keys vi
+#bind-key -t vi-copy 'v' begin-selection
+#bind-key -t vi-copy 'y' copy-selection
+bind-key -Tcopy-mode-vi 'v' send -X begin-selection
+bind-key -Tcopy-mode-vi 'y' send -X "reattach-to-user-namespace pbcopy"
+
+# hjkl pane traversal
+bind h select-pane -L
+bind j select-pane -D
+bind k select-pane -U
+bind l select-pane -R
+
+# set height for main horizontal pane
+bind m set-window-option main-pane-height 40\; select-layout main-horizontal
+
+# Disable pane title with current path
+setw -g automatic-rename off
+tmux_conf_new_window_retain_current_path=false
+
+# color
+set -g default-terminal "screen-256color"
+
+# from powerline
+run-shell "tmux set-environment -g TMUX_VERSION_MAJOR $(tmux -V | cut -d' ' -f2 | cut -d'.' -f1 | sed 's/[^0-9]*//g')"
+run-shell "tmux set-environment -g TMUX_VERSION_MINOR $(tmux -V | cut -d' ' -f2 | cut -d'.' -f2 | sed 's/[^0-9]*//g')"
+
+# status bar
+if-shell '\( #{$TMUX_VERSION_MAJOR} -eq 2 -a #{$TMUX_VERSION_MINOR} -lt 2\) -o #{$TMUX_VERSION_MAJOR} -le 1' 'set-option -g status-utf8 on'
+
+# fix pane_current_path on new window and splits
+if-shell "test '#{$TMUX_VERSION_MAJOR} -gt 1 -o \( #{$TMUX_VERSION_MAJOR} -eq 1 -a #{$TMUX_VERSION_MINOR} -ge 8 \)'" 'unbind c; bind c new-window -c "#{pane_current_path}"'
+if-shell "test '#{$TMUX_VERSION_MAJOR} -gt 1 -o \( #{$TMUX_VERSION_MAJOR} -eq 1 -a #{$TMUX_VERSION_MINOR} -ge 8 \)'" "unbind '\"'; bind '\"' split-window -v -c '#{pane_current_path}'"
+if-shell "test '#{$TMUX_VERSION_MAJOR} -gt 1 -o \( #{$TMUX_VERSION_MAJOR} -eq 1 -a #{$TMUX_VERSION_MINOR} -ge 8 \)'" 'unbind v; bind v split-window -h -c "#{pane_current_path}"'
+if-shell "test '#{$TMUX_VERSION_MAJOR} -gt 1 -o \( #{$TMUX_VERSION_MAJOR} -eq 1 -a #{$TMUX_VERSION_MINOR} -ge 8 \)'" 'unbind %; bind % split-window -h -c "#{pane_current_path}"'S
+
+# Mouse mode
+set-option -g mouse on
+
+# Avoid renaming of windows
+set-window-option -g automatic-rename off
+set-option -g allow-rename off
+
+# show session name, window & pane number, date and time on right side of
+# status bar
+#set -g status-right '#[fg=green][#[fg=white]#(echo $USER) @ #H#[fg=green]][#[fg=black,bold]%h %d %Y #[bg=green,fg=white,bold]%l:%M %p#[default]#[fg=green]]'
+set -g status-right "#[fg=green][#[fg=black,bold]%h %d %Y #[fg=white,bold]%l:%M %p#[default]#[fg=green]]"
+set -g status-left ""
+
+# reload config
+bind r source-file ~/.tmux.conf \; display-message "Config reloaded..."
+
+# List of plugins
+set -g @plugin 'tmux-plugins/tpm'
+set -g @plugin 'tmux-plugins/tmux-sensible'
+set -g @plugin 'tmux-plugins/tmux-sidebar'
+set -g @plugin 'tmux-plugins/tmux-resurrect'
+set -g @plugin 'tmux-plugins/tmux-continuum'
+
+# Continuum auto restore
+set -g @continuum-restore 'on'
+
+# Restore vim sessions
+set -g @resurrect-strategy-vim 'session'
+
+# Other examples:
+# set -g @plugin 'github_username/plugin_name'
+# set -g @plugin 'git@github.com/user/plugin'
+# set -g @plugin 'git@bitbucket.com/user/plugin'
+
+# Initialize TMUX plugin manager (keep this line at the very bottom of tmux.conf)
+run '~/.tmux/plugins/tpm/tpm'

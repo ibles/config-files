@@ -1,0 +1,24 @@
+[user]
+    email = io913@ic.ac.uk
+    name = Ibles
+;[filter "lfs"]
+    ;clean = git-lfs clean %f
+    ;smudge = git-lfs smudge %f
+    ;required = true
+[push]
+    default = simple
+[alias]
+    st = status
+    co = checkout
+    cm = commit
+    br = branch
+    ;lg = log --pretty=format:'%h %ad | %s%d [%an]' --graph --date=short
+	;lg = log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
+    lg = log --pretty=format:'%Cred%h%Creset %Cgreen(%ar)%Creset | %s %C(yellow)%d%Creset %C(bold blue)[%an]%Creset' --graph --abbrev-commit --date=short
+[merge]
+    tool = vim
+[core]
+    editor = vim
+[web]
+    browser = open
+

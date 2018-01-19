@@ -1,0 +1,49 @@
+#Terminal features
+#====================================================================#
+#PS1='${debian_chroot:+($debian_chroot)}\[\033[0;33m\]\u\[\033[00m\]:\[\033[01;30m\]\W\[\033[00m\]\$ '
+PS1='${debian_chroot:+($debian_chroot)}\[\033[0;33m\]\u\[\033[00m\]:\[\033[90m\]\W\[\e[0;31m\]\$\[\033[00m\] '
+#Green: 0;32, Red: 0;31, Purple: 0;33, Grey: 1;30, Brown: 0;33
+export CLICOLOR=1
+export LSCOLORS=ExFxCxDxBxgxgxbxbxexex
+
+#Source files
+#====================================================================#
+source ~/Software/git-completion.bash
+
+#New Aliases
+#====================================================================#
+alias goTreb='cd ~/Documents/TREBALLS/'
+alias goRoot_tut='cd /Users/ibles/Software/root6/tutorials'
+alias goPhD='cd /Users/ibles/Documents/WORK/PhD_in_dark_matter_direct_detection'
+alias goProj='cd /Users/ibles/Documents/WORK/PhD_in_dark_matter_direct_detection/Projects'
+alias goCal='cd /Users/ibles/Documents/WORK/PhD_in_dark_matter_direct_detection/Projects/1-LZ_sensitivity_to_dark_matter/TDRScience/LZsens/WIMP_SI/Sensitivity_Calculator'
+alias goPlot='cd /Users/ibles/Documents/WORK/PhD_in_dark_matter_direct_detection/Projects/1-LZ_sensitivity_to_dark_matter/TDRScience/LZsens/WIMP_SI/Plot_Tool'
+alias goOut='cd /Users/ibles/Documents/WORK/PhD_in_dark_matter_direct_detection/Projects/1-LZ_sensitivity_to_dark_matter/TDRScience/LZsens/WIMP_SI/Sensitivity_Calculator/output'
+alias goVimLat='cd ~/.vim/after/ftplugin/'
+
+alias mvi='open -a /Applications/MacVim.app'
+alias vi='vim' #vi is mapped to an old version of vim
+alias root='root -l'
+alias broot='root -l -b -q'
+alias sshLX01='ssh -XY io913@lx01.hep.ph.ic.ac.uk'
+#alias sshLX02='ssh -XY io913@lx02.hep.ph.ic.ac.uk'
+alias sshPDSF='ssh -XY ibles@pdsf.nersc.gov'
+alias ll='ls -lthF'
+alias ls='ls -GFh'
+alias grep='grep --color=auto'
+alias trash='rmtrash'
+alias rm='rm -i'
+#alias rm='trash'
+alias dumptrash='rm -rf ~/.Trash/*'
+alias r5='source /usr/local/Cellar/root/HEAD/libexec/thisroot.sh'
+alias r6='source /Users/ibles/Software/root6/config/thisroot.sh'
+alias tmux_new='tmux new -s'
+alias tmux_open='tmux a -t'
+alias tmux_kill='tmux kill-session -t'
+
+#Other
+#====================================================================#
+#Disable default use of <C-S> to use for saving document
+stty -ixon
+#Load ROOT dependencies
+. /usr/local/bin/thisroot.sh

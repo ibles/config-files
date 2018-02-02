@@ -26,11 +26,12 @@ flags = [
     '-x', 'c++',
     # This path will only work on OS X, but extra paths that don't exist are not
     # harmful
+    '-isystem', '/Library/Developer/CommandLineTools/usr/include/c++/v1/',
     '-isystem', '/System/Library/Frameworks/Python.framework/Versions/2.7/include/python2.7/',
-    '-isystem', '/Users/ibles/Software/anaconda2/include/python2.7',
-    '-isystem', '/usr/local/Cellar/root/6.12.04_1/include/root',
-    '-isystem', '/usr/local/Cellar/root/6.12.04_1/include/root/RooStats',
-    '-isystem', '/usr/local/include',
+    '-isystem', '/Users/ibles/Software/anaconda2/include/python2.7/',
+    '-isystem', '/usr/local/Cellar/root/6.12.04_1/include/root/',
+    '-isystem', '/usr/local/Cellar/root/6.12.04_1/include/root/RooStats/',
+    '-isystem', '/usr/local/include/',
     '-I', './include',
     '-I.',
 ]

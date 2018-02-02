@@ -122,6 +122,10 @@ set-option -g allow-rename off
 set -g status-right "#[fg=green][#[fg=black,bold]%h %d %Y #[fg=white,bold]%l:%M %p#[default]#[fg=green]]"
 set -g status-left ""
 
+# solve problem with Mac open command
+#set-option -g default-command "which reattach-to-user-namespace > /dev/null && reattach-to-user-namespace -l $SHELL || $SHELL"
+set-option -g default-command "tab > /dev/null 2>&1; reattach-to-user-namespace -l bash"
+
 # reload config
 bind r source-file ~/.tmux.conf \; display-message "Config reloaded..."
 

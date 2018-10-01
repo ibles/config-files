@@ -1,4 +1,4 @@
-#Terminal features
+# Terminal features
 #====================================================================#
 #PS1='${debian_chroot:+($debian_chroot)}\[\033[0;33m\]\u\[\033[00m\]:\[\033[01;30m\]\W\[\033[00m\]\$ '
 PS1='${debian_chroot:+($debian_chroot)}\[\033[0;33m\]\u\[\033[00m\]:\[\033[90m\]\W\[\e[0;31m\]\$\[\033[00m\] '
@@ -6,44 +6,49 @@ PS1='${debian_chroot:+($debian_chroot)}\[\033[0;33m\]\u\[\033[00m\]:\[\033[90m\]
 export CLICOLOR=1
 export LSCOLORS=ExFxCxDxBxgxgxbxbxexex
 
-#Source files
+# Other
+#====================================================================#
+#Disable default use of <C-S> to use for saving document
+stty -ixon
+
+# Source files
 #====================================================================#
 source ~/Software/git-completion.bash
+source /usr/local/Cellar/root/6.14.00_1/bin/thisroot.sh
 
-#New Aliases
+# Environment variables
 #====================================================================#
-alias goTreb='cd ~/Documents/TREBALLS/'
-alias goRoot_tut='cd /Users/ibles/Software/root6/tutorials'
-alias goPhD='cd /Users/ibles/Documents/WORK/PhD_in_dark_matter_direct_detection'
-alias goProj='cd /Users/ibles/Documents/WORK/PhD_in_dark_matter_direct_detection/Projects'
-alias goCal='cd /Users/ibles/Documents/WORK/PhD_in_dark_matter_direct_detection/Projects/1-LZ_sensitivity_to_dark_matter/TDRScience/LZsens/WIMP_SI/Sensitivity_Calculator'
-alias goPlot='cd /Users/ibles/Documents/WORK/PhD_in_dark_matter_direct_detection/Projects/1-LZ_sensitivity_to_dark_matter/TDRScience/LZsens/WIMP_SI/Plot_Tool'
-alias goOut='cd /Users/ibles/Documents/WORK/PhD_in_dark_matter_direct_detection/Projects/1-LZ_sensitivity_to_dark_matter/TDRScience/LZsens/WIMP_SI/Sensitivity_Calculator/output'
-alias goVimLat='cd ~/.vim/after/ftplugin/'
+export PATH="$PATH:/Users/ibles/Software/anaconda2/bin:/usr/local/bin" #for Anaconda and Brew
+export LD_LIBRARY_PATH="$ROOTSYS/lib/root:$LD_LIBRARY_PATH" #for ROOT.py and libPyROOT.so
+export DYLD_LIBRARY_PATH="$ROOTSYS/lib/root:$DYLD_LIBRARY_PATH" #for ROOT.py
+export PYTHONPATH="$PYTHONPATH:$ROOTSYS/lib/root" #to find ROOT.py
 
-alias mvi='open -a /Applications/MacVim.app'
-alias vi='vim' #vi is mapped to an old version of vim
+# New Aliases
+#====================================================================#
+alias goPhD='cd /Users/ibles/Documents/WORK/PhD_in_dark_matter_direct_detection'
+alias goWrite='cd /Users/ibles/Documents/WORK/PhD_in_dark_matter_direct_detection/Compositions'
+alias goThesis='cd /Users/ibles/Documents/WORK/PhD_in_dark_matter_direct_detection/Compositions/THESIS/'
+alias goProj='cd /Users/ibles/Documents/WORK/PhD_in_dark_matter_direct_detection/Projects'
+alias goTalks='cd /Users/ibles/Documents/WORK/PhD_in_dark_matter_direct_detection/Talks/2018'
+alias goLZStats='cd /Users/ibles/Documents/WORK/PhD_in_dark_matter_direct_detection/Projects/1-LZ_sensitivity/SENSITIVITY/LZStats'
+alias goReco='cd /Users/ibles/Documents/WORK/PhD_in_dark_matter_direct_detection/Projects/2-Parameter_inference'
+alias goNEST='cd /Users/ibles/Documents/WORK/PhD_in_dark_matter_direct_detection/Projects/1-LZ_sensitivity_to_dark_matter/NEST/fastNEST/libNEST'
+alias goVimLat='cd ~/.vim/after/ftplugin/'
+alias vi='/Applications/MacVim.app/Contents/bin/vim' #to make YCM work fully use the MacVim vim
 alias root='root -l'
 alias broot='root -l -b -q'
+alias skim='open -a /Applications/Skim.app'
+alias preview='open -a /Applications/Preview.app'
 alias sshLX01='ssh -XY io913@lx01.hep.ph.ic.ac.uk'
-#alias sshLX02='ssh -XY io913@lx02.hep.ph.ic.ac.uk'
 alias sshPDSF='ssh -XY ibles@pdsf.nersc.gov'
 alias ll='ls -lthF'
 alias ls='ls -GFh'
 alias grep='grep --color=auto'
 alias trash='rmtrash'
 alias rm='rm -i'
-#alias rm='trash'
-alias dumptrash='rm -rf ~/.Trash/*'
-alias r5='source /usr/local/Cellar/root/HEAD/libexec/thisroot.sh'
-alias r6='source /Users/ibles/Software/root6/config/thisroot.sh'
 alias tmux_new='tmux new -s'
 alias tmux_open='tmux a -t'
 alias tmux_kill='tmux kill-session -t'
-
-#Other
-#====================================================================#
-#Disable default use of <C-S> to use for saving document
-stty -ixon
-#Load ROOT dependencies
-. /usr/local/bin/thisroot.sh
+alias mvim='open -a /Applications/MacVim.app'
+alias ..='cd ..'
+alias ...='cd ../..'

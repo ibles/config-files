@@ -1,0 +1,206 @@
+" ========================================================================== "
+" => General
+" ========================================================================== "
+" Enable filetype plugins
+filetype on
+filetype indent on 
+
+" Automatically reload this file if it is changed
+set autoread
+
+" Set a map leader
+let mapleader = ","
+set timeoutlen=500 " set time out for mapping delays to 0.1 ms
+set ttimeoutlen=0   " time out for key code delays
+
+" Automatic reloading of .vimrc
+autocmd! bufwritepost .vimrc source %
+
+" Disable automatic comment insertion
+autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o 
+
+" Return to last edit position when opening files
+autocmd BufReadPost *
+     \ if line("'\"") > 0 && line("'\"") <= line("$") |
+     \   exe "normal! g`\"" |
+     \ endif
+
+" Remember info about open buffers on close
+set viminfo^=%
+
+" Change title for tabs
+autocmd BufEnter * let &titlestring = expand("%:@")
+set title
+
+" Set a toggle for PASTE INSERT mode
+set pastetoggle=<F8>
+set showmode
+
+" Setting Vim to use the clipboard
+" Pro - you can copy text from one vim session to another (not necessarily tabs)
+" Contra - you might like to have the clipboard 
+" available for text copied from somewhere else 
+if has("clipboard")
+  set clipboard=unnamed " copy to the system clipboard
+  if has("unnamedplus") " X11 support
+    set clipboard+=unnamedplus
+  endif
+endif
+
+" TAB all
+nnoremap <C-T><C-B> :tab all<CR>
+
+" WRAPPING
+" Set maximum textwidth to 80 for certain file types
+au BufRead,BufNewFile *.md setlocal textwidth=80
+au BufRead,BufNewFile *.tex setlocal textwidth=80
+set wrapmargin=2
+set wrap linebreak nolist " soft wrap
+set formatoptions-=t
+" Wrapping maps
+noremap <C-Q><C-A> VGgq''
+noremap <C-Q><C-Q> {V}gq''
+
+" ========================================================================== "
+" => Colors and Fonts
+" ========================================================================== "
+" Enable syntax highlighting
+syntax enable
+
+" Colorscheme (different for MacVim and terminal Vim)
+colorscheme jellybeans
+let g:jellybeans_use_term_italics = 1
+
+" ========================================================================== "
+" => VIM user interface
+" ========================================================================== "
+" Show current position
+set ruler
+
+" Height of the command bar
+set cmdheight=1
+
+" Configure backspace so it acts as it should
+set backspace=eol,start,indent
+set whichwrap+=<,>,h,l
+"set backspace=2
+
+" Ignore case when searching
+"set ignorecase
+
+" Highlight search results
+set hlsearch
+"set incsearch
+
+" Show matching brackets when cursor is over them
+set showmatch
+
+set viewoptions=cursor,folds,slash,unix 
+set number
+"set shiftround
+"set title
+
+" Display only file name on each tab
+set guitablabel=%t
+
+"Mark column at 80 characters
+"set colorcolumn=80
+highlight ColorColumn ctermfg=231
+" more colours: http://vim.wikia.com/wiki/Xterm256_color_names_for_console_Vim
+
+" Special highlighting (bg=background, fg=foreground)
+" Options: bold, underline, reverse, italic, none
+" Types: Comment, Constant, Normal, NonText, Special, Cursor
+" Colors: http://alvinalexander.com/linux/vi-vim-editor-color-scheme-syntax
+highlight Comment cterm=none ctermbg=none ctermfg=DarkGray
+
+" ========================================================================== "
+" => Back-up files
+" ========================================================================== "
+" Turn backup off
+set nobackup
+set nowb
+set noswapfile
+
+" ========================================================================== "
+" => Indentation
+" ========================================================================== "
+" Use spaces instead of tabs
+set expandtab
+
+" 1 tab == 4 spaces
+set tabstop=4     
+set shiftwidth=4
+set softtabstop=4
+" Use shift-Tab to write a tab in insert mode
+"inoremap <S-Tab> <C-V><Tab> 
+
+" Automatic indentation
+"set breakindent
+"set breakindentopt=shift:4
+set autoindent
+"set smartindent
+"set cindent
+
+" ========================================================================== "
+" => Moving around and new mappings
+" ========================================================================== "
+" Treat long lines as break lines
+nnoremap j gj
+nnoremap k gk
+
+" Move between tabs with H and L
+nnoremap H :tabprevious<cr>
+nnoremap L :tabnext<cr>
+
+" Move tab left or right
+nnoremap HH :tabm -1<CR>
+nnoremap LL :tabm +1<CR>
+
+" Press ,<space> to remove higlight
+nnoremap <leader><space> :nohlsearch<CR>
+
+" Move blocks of code selected in visual mode
+vnoremap < <gv 
+vnoremap > >gv 
+
+" Scroll keeping the cursor in the same position in the screen
+nnoremap K <C-y>k
+nnoremap J <C-e>j
+
+" Some useful shortcuts to move in insert mode
+inoremap <C-H> <Esc>bi
+inoremap <C-L> <Esc>wwi
+
+" Smart way to move between windows (:sv for horizontal splitting and :vs for vertical)
+nnoremap <C-j> <C-W>j
+nnoremap <C-k> <C-W>k
+nnoremap <C-h> <C-W>h
+nnoremap <C-l> <C-W>l
+
+" jump to the matching parenthesis, and you visually select all the text in between
+"noremap % v%
+
+" Remap VIM 0 to first non-blank character
+nnoremap 0 ^
+
+" Save with <C-S>
+nnoremap <C-S> :w <CR>
+inoremap <C-S> <Esc>:w <CR>
+
+" Move a line of text one line up or down using ALT+[jk]
+nmap ¶ mz:m+<cr>`z
+nmap § mz:m-2<cr>`z
+vmap ¶ :m'>+<cr>`<my`>mzgv`yo`z
+vmap § :m'<-2<cr>`>my`<mzgv`yo`z
+
+" Create a new line above or below current line
+noremap <C-j><C-j> o<Esc>k
+noremap <C-k><C-k> O<Esc>j
+
+" Bind together two windows when scrolling
+nnoremap <C-s><C-b> :windo set scb!<CR>
+
+" Delete without copying to clipboard
+nmap DD "_d
+vmap DD "_d

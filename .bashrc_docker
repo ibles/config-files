@@ -1,0 +1,43 @@
+# .bashrc
+
+# Source global definitions
+if [ -f /etc/bashrc ]; then
+            . /etc/bashrc
+fi
+
+# Uncomment the following line if you don't like systemctl's auto-paging feature:
+# export SYSTEMD_PAGER=
+
+# User specific aliases and functions (BELOW)
+
+# Terminal features
+#====================================================================#
+#PS1='${debian_chroot:+($debian_chroot)}\[\033[0;33m\]\u\[\033[00m\]:\[\033[01;30m\]\W\[\033[00m\]\$ '
+PS1='${debian_chroot:+($debian_chroot)}\[\033[0;36m\]\u\[\033[00m\]:\[\033[90m\]\W\[\e[0;31m\]\$\[\033[00m\] '
+#Green: 0;32, Red: 0;31, Purple: 0;33, Grey: 1;30, Brown: 0;33
+export CLICOLOR=1
+export LSCOLORS=ExFxCxDxBxgxgxbxbxexex
+
+# Other
+#====================================================================#
+#Disable default use of <C-S>, so it can be use to save document
+stty -ixon
+
+# Environment variables
+#====================================================================#
+#export CONDA_DIR=/Users/ibles/Software/miniconda2
+#export PATH=$CONDA_DIR/bin:$PATH #to select specific versions of software
+#export PYTHONPATH=$ROOTSYS/lib:$PYTHONPATH #to find ROOT.py
+#export DYLD_LIBRARY_PATH=$ROOTSYS/lib:$DYLD_LIBRARY_PATH #to find libPyROOT.so
+
+# New Aliases
+#====================================================================#
+alias root='root -l'
+alias broot='root -l -b -q'
+alias ll='ls -lthF'
+alias ls='ls -GFh'
+alias grep='grep --color=auto'
+alias trash='rmtrash'
+alias rm='rm -i'
+alias ..='cd ..'
+alias ...='cd ../..'

@@ -1,1 +1,2 @@
-My configuration files
+# Config files
+Personal repository to store important configuration files

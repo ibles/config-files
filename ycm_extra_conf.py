@@ -24,16 +24,17 @@ flags = [
     # relevant for c++ headers.
     # For a C project, you would set this to 'c' instead of 'c++'.
     '-x', 'c++',
-    # This path will only work on OS X, but extra paths that don't exist are not
-    # harmful
-    '-isystem', '/Library/Developer/CommandLineTools/usr/include/c++/v1/',
-    '-isystem', '/System/Library/Frameworks/Python.framework/Versions/2.7/include/python2.7/',
-    '-isystem', '/Users/ibles/Software/anaconda2/include/python2.7/',
-    '-isystem', '/usr/local/Cellar/root/6.12.04_1/include/root/',
-    '-isystem', '/usr/local/Cellar/root/6.12.04_1/include/root/RooStats/',
-    '-isystem', '/usr/local/include/',
+    # Extra paths that don't exist are not harmful
+    '-isystem', '/Library/Developer/CommandLineTools/usr/include/c++/v1',
+    # '-isystem', '/System/Library/Frameworks/Python.framework/Versions/2.7/include/python2.7/',
+    '-isystem', '/Users/ibles/Software/miniconda2/include/python2.7',
+    '-isystem', '/Users/ibles/Software/root-buildir/include',
+    '-isystem', '/Users/ibles/Software/root-buildir/include/RooStats',
+    '-isystem', '/Users/ibles/Documents/WORK/luxzeplin/projects/LZStats/code/inc',
     '-I', './include',
-    '-I.',
+    '-I', './inc',
+    '-I', '../include',
+    '-I', '../inc'
 ]
 
 # Set this to the absolute path to the folder (NOT the file!) containing the

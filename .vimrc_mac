@@ -192,8 +192,8 @@ nnoremap H :tabprevious<cr>
 nnoremap L :tabnext<cr>
 
 " Move tab left or right
-nnoremap HH :tabm -1<CR>
-nnoremap LL :tabm +1<CR>
+nnoremap <C-h> :tabm -1<CR>
+nnoremap <C-l> :tabm +1<CR>
 
 " Press ,<space> to remove higlight
 nnoremap <leader><space> :nohlsearch<CR>
@@ -205,11 +205,6 @@ vnoremap > >gv
 " Scroll keeping the cursor in the same position in the screen
 nnoremap K <C-y>k
 nnoremap J <C-e>j
-
-" Some useful shortcuts for insert mode
-inoremap <C-H> <Esc>bi
-inoremap <C-L> <Esc>wwi
-imap <C-BS> <C-W>
 
 " Smart way to move between windows (:sv for horizontal splitting and :vs for vertical)
 nnoremap <C-j> <C-W>j
@@ -409,8 +404,8 @@ noremap <space>p dp:diffupdate<CR>
 
 " Clang-format
 " -------------------------------------- "
-map <C-K> :py3f /Users/ibles/Software/clang-format/share/clang/clang-format.py<cr>
-imap <C-K> <c-o>:py3f /Users/ibles/Software/clang-format/share/clang/clang-format.py<cr>
+map <C-K> :py3f /usr/local/Cellar/clang-format/2019-05-14/share/clang/clang-format.py<cr>
+imap <C-K> <c-o>:py3f /usr/local/Cellar/clang-format/2019-05-14/share/clang/clang-format.py<cr>
 
 " Custom Functions
 " -------------------------------------- "

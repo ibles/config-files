@@ -13,13 +13,13 @@ Plugin 'VundleVim/Vundle.vim'
 Plugin 'scrooloose/nerdcommenter'
 Plugin 'bling/vim-airline'
 Plugin 'tpope/vim-fugitive'
-"Plugin 'easymotion/vim-easymotion'
 Plugin 'ctrlpvim/ctrlp.vim'
 Plugin 'tacahiroy/ctrlp-funky'
 Plugin 'flazz/vim-colorschemes'
-Plugin 'valloric/youcompleteme'
+Plugin 'ycm-core/YouCompleteMe'
 Plugin 'vim-latex/vim-latex.git'
 Plugin 'junegunn/goyo.vim' " Distraction-free writing in Vim. Use: Goyo, Goyo!
+"Plugin 'ervandew/supertab'
 call vundle#end()
 " Brief help
 " :PluginList       - lists configured plugins
@@ -192,8 +192,8 @@ nnoremap H :tabprevious<cr>
 nnoremap L :tabnext<cr>
 
 " Move tab left or right
-nnoremap <C-h> :tabm -1<CR>
-nnoremap <C-l> :tabm +1<CR>
+nnoremap HH :tabm -1<CR>
+nnoremap LL :tabm +1<CR>
 
 " Press ,<space> to remove higlight
 nnoremap <leader><space> :nohlsearch<CR>
@@ -404,8 +404,8 @@ noremap <space>p dp:diffupdate<CR>
 
 " Clang-format
 " -------------------------------------- "
-map <C-K> :py3f /usr/local/Cellar/clang-format/2019-05-14/share/clang/clang-format.py<cr>
-imap <C-K> <c-o>:py3f /usr/local/Cellar/clang-format/2019-05-14/share/clang/clang-format.py<cr>
+map <C-K> :py3f /usr/local/Cellar/clang-format/10.0.0/share/clang/clang-format.py<cr>
+imap <C-K> <c-o>:py3f /usr/local/Cellar/clang-format/10.0.0/share/clang/clang-format.py<cr>
 
 " Custom Functions
 " -------------------------------------- "

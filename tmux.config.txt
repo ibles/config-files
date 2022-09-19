@@ -7,6 +7,11 @@
 #   run  --> run-shell
 #   bind --> bind-key
 
+# Set C-space as the main prefix
+unbind C-b
+set-option -g prefix C-Space
+bind-key C-Space send-prefix
+
 # 24 hour clock
 setw -g clock-mode-style 24
 set-window-option -g clock-mode-colour green #green
@@ -79,9 +84,8 @@ setw -g aggressive-resize on
 
 # Vi copypaste mode
 set-window-option -g mode-keys vi
-#bind-key -Tcopy-mode-vi 'v' send -X begin-selection
-#bind-key -T copy-mode 'y' send -X copy-pipe-and-cancel "pbcopy"
-bind-key -Tcopy-mode-vi 'y' send -X "reattach-to-user-namespace pbcopy" 
+bind-key -Tcopy-mode-vi 'v' send -X begin-selection
+#bind-key -Tcopy-mode-vi 'y' send -X "reattach-to-user-namespace pbcopy" 
 #it's better to disable the above option, otherwise the clipboard is updated too frequently
 
 # hjkl pane traversal
